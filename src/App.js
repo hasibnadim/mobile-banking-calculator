@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Navbar } from 'react-bootstrap';
 import './App.css';
+import Body from './Body';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand >Mobile Banking Calculator</Navbar.Brand>
+        </Container>
+      </Navbar>
+    <Body />
+      <Navbar fixed="bottom" bg="dark" variant="dark" >
+      <Container>
+          <Navbar.Brand >Copyright &copy; Md. Hasib Nadim</Navbar.Brand>
+        </Container>
+      </Navbar>
     </div>
   );
 }
