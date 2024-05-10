@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar } from "react-bootstrap";
-import "./App.css"; 
+import "./App.css";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -15,29 +15,37 @@ import Rocket from "./Services/Rocket";
 import Upay from "./Services/Upay";
 import { useEffect, useRef, useState } from "react";
 function App() {
-  const [readyInstaller, setReadyInstaller] = useState(false)
-  const sw = useRef<any>(null)
+  const [readyInstaller, setReadyInstaller] = useState(false);
+  const sw = useRef<any>(null);
   const install = async () => {
     if (sw.current) {
-      sw.current.register()
+      sw.current.prompt();
+      const { outcome } = await sw.current.userChoice;
+      if (outcome === "accepted") {
+        sw.current = null;
+      }
     }
-  }
+  };
   useEffect(() => {
-   window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault()
-      sw.current = e
-      setReadyInstaller(true)
-    })
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      sw.current = e;
+      setReadyInstaller(true);
+    });
     return () => {
-      window.removeEventListener('beforeinstallprompt', () => {})
-    }
-  }, [])
-  
+      window.removeEventListener("beforeinstallprompt", () => {});
+    };
+  }, []);
+
   return (
     <>
       <Navbar bg="dark" variant="dark" className="px-1 py-0">
         <Navbar.Brand href="/">Mobile Banking Calculator</Navbar.Brand>
-        {readyInstaller && <button className="installer_btn" onClick={install}>Install</button>}
+        {readyInstaller && (
+          <button className="installer_btn" onClick={install}>
+            Install
+          </button>
+        )}
       </Navbar>
       <RouterProvider
         router={createBrowserRouter(
