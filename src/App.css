@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+}
+#root{
+  background-color: rgb(66, 66, 66); 
+}
+.main_container{
+  max-width: 540px;
+  margin: 0 auto;
+  background-color: aliceblue; 
+  height: calc(100vh - 40px);
+}
+.service_row{
+  display: flex;
+  justify-content: space-between;
+}
+.service_row:hover{
+  background-color: rgb(212, 218, 255);
+  color: blue;
+}
+.nav-item button{
+  white-space: pre;
+}
+.installer_btn{
+  background:none;
+  color: rgb(150, 150, 255);
+  border: 2px solid rgb(150, 150, 255);
+  padding: 1px 8px;
+  border-radius: 5px;
+}
+.installer_btn:hover{
+  font-weight: bolder;
+}
